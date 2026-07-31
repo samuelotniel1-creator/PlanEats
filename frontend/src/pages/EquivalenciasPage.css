@@ -11,8 +11,13 @@
 
 .equivalencias-toolbar {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--space-3);
   margin-bottom: var(--space-3);
+}
+
+.equivalencias-search {
+  min-width: 200px;
 }
 
 .equivalencias-search {
@@ -39,9 +44,18 @@
   color: var(--color-ink-soft);
   border-radius: var(--radius-md);
   padding: 0 var(--space-5);
+  min-height: 48px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .equivalencias-search,
+  .toolbar-toggle {
+    flex-basis: 100%;
+  }
 }
 
 .toolbar-toggle-active {
@@ -220,6 +234,7 @@
 .plato-sugerido-input {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: var(--space-3);
   margin-bottom: var(--space-4);
 }
@@ -231,6 +246,7 @@
 
 .target-kcal-input {
   width: 120px;
+  min-height: 44px;
 }
 
 .plato-sugerido-list {
@@ -481,6 +497,20 @@
   color: var(--color-cream);
 }
 
+@media (pointer: coarse) {
+  .equivalent-button,
+  .equivalencias-item-cart button,
+  .pantry-checkbox {
+    width: 32px;
+    height: 32px;
+  }
+
+  .mi-platillo-line-actions button {
+    width: 28px;
+    height: 28px;
+  }
+}
+
 .equivalencias-item-qty {
   font-size: 12px;
   font-weight: 700;
@@ -515,7 +545,8 @@
 
 .mi-platillo {
   position: sticky;
-  top: var(--space-5);
+  /* Clears the sticky app header (~64px) plus a little breathing room. */
+  top: 88px;
   background: var(--color-paper);
   border: 1px solid var(--color-line);
   border-radius: var(--radius-md);
@@ -628,5 +659,17 @@
 
   .mi-platillo {
     position: static;
+  }
+}
+
+@media (max-width: 480px) {
+  .pantry-recipe-cols {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .equivalencias-group-header-right {
+    width: 100%;
+    justify-content: space-between;
   }
 }

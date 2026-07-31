@@ -18,14 +18,16 @@
 }
 
 .recipe-title {
-  font-size: 44px;
+  font-size: clamp(28px, 7vw, 44px);
   margin: 0 0 var(--space-3);
+  line-height: 1.1;
 }
 
 .recipe-meta {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--color-ink-soft);
   display: flex;
+  flex-wrap: wrap;
   gap: var(--space-2);
 }
 
@@ -72,7 +74,8 @@
   padding: var(--space-5);
   box-shadow: var(--shadow-card);
   position: sticky;
-  top: var(--space-5);
+  /* Clears the sticky app header (~64px) plus a little breathing room. */
+  top: 88px;
 }
 
 .ingredients-list {
@@ -135,12 +138,14 @@
 .ing-action-link {
   border: none;
   background: none;
-  padding: 0;
-  font-size: 11px;
+  padding: var(--space-2) 0;
+  margin: calc(var(--space-2) * -1) 0;
+  font-size: 12px;
   font-weight: 600;
   color: var(--color-olive-deep);
   text-decoration: underline;
   cursor: pointer;
+  min-height: 32px;
 }
 
 .ing-picker {
@@ -194,8 +199,9 @@
   background: var(--color-olive-tint);
   color: var(--color-olive-deep);
   border-radius: 999px;
-  padding: 3px 10px;
-  font-size: 11px;
+  padding: var(--space-2) var(--space-3);
+  min-height: 36px;
+  font-size: 12px;
   font-weight: 700;
   cursor: pointer;
 }

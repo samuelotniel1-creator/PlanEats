@@ -96,13 +96,13 @@ function ShoppingRow({
 }) {
   return (
     <li className={`item-row ${checked ? 'item-row-checked' : ''}`}>
-      <button type="button" className="item-checkbox" onClick={onToggle} aria-pressed={checked}>
-        {checked && '✓'}
+      <button type="button" className="item-row-button" onClick={onToggle} aria-pressed={checked}>
+        <span className="item-checkbox">{checked && '✓'}</span>
+        <span className="item-name">{item.name}</span>
+        <span className="item-quantity">
+          {formatQuantity(item.quantity)} {item.unit}
+        </span>
       </button>
-      <span className="item-name">{item.name}</span>
-      <span className="item-quantity">
-        {formatQuantity(item.quantity)} {item.unit}
-      </span>
     </li>
   );
 }
