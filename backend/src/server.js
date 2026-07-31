@@ -13,13 +13,11 @@ app.get('/api/health', (_req, res) => res.json({ ok: true }));
 app.use('/api/meal-plans', mealPlansRouter);
 app.use('/api/recipes', recipesRouter);
 
-// Vercel imports this file as a serverless function (no listening socket —
-// it calls the exported app directly per request), so only bind a port when
-// running as a normal long-lived Node process (local dev, or a traditional host).
-if (!process.env.VERCEL) {
-  app.listen(PORT, () => {
-    console.log(`Eater API listening on http://localhost:${PORT}`);
-  });
-}
+// Runs as a persistent process both locally and as a Vercel "backend" service
+// (vercel.json services config) — either way, something has to bind a port,
+// so this always listens on process.env.PORT (Vercel assigns it) or 4000 locally.
+app.listen(PORT, () => {
+  console.log(`Eater API listening on http://localhost:${PORT}`);
+});
 
 export default app;
