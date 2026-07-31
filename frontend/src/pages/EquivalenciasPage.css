@@ -1,0 +1,632 @@
+.equivalencias-page {
+  max-width: 1180px;
+}
+
+.panel-heading {
+  font-size: 15px;
+  font-family: var(--font-display);
+  margin: 0 0 var(--space-3);
+  color: var(--color-olive-deep);
+}
+
+.equivalencias-toolbar {
+  display: flex;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.equivalencias-search {
+  flex: 1;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  font-size: 17px;
+  font-family: var(--font-body);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-card);
+}
+
+.equivalencias-search:focus {
+  outline: 2px solid var(--color-olive);
+  outline-offset: 1px;
+}
+
+.toolbar-toggle {
+  flex-shrink: 0;
+  border: 1px solid var(--color-line);
+  background: var(--color-cream-dim);
+  color: var(--color-ink-soft);
+  border-radius: var(--radius-md);
+  padding: 0 var(--space-5);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.toolbar-toggle-active {
+  background: var(--color-olive);
+  color: var(--color-cream);
+  border-color: var(--color-olive);
+}
+
+.group-filter-chip {
+  display: inline-block;
+  margin-bottom: var(--space-4);
+  border: 1px solid var(--color-terracotta);
+  background: var(--color-terracotta-tint);
+  color: var(--color-terracotta-deep);
+  border-radius: 999px;
+  padding: var(--space-2) var(--space-4);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.equivalencias-count {
+  font-size: 13px;
+  color: var(--color-ink-soft);
+  margin: 0 0 var(--space-4);
+}
+
+.pantry-recipes {
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-card);
+  margin-bottom: var(--space-6);
+}
+
+.pantry-recipes-empty {
+  font-size: 13px;
+  color: var(--color-ink-soft);
+  line-height: 1.5;
+}
+
+.pantry-recipes-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.pantry-recipe-card {
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.pantry-recipe-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-cream-dim);
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.pantry-recipe-name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 15px;
+  color: var(--color-ink);
+}
+
+.pantry-recipe-meal {
+  font-size: 11px;
+  color: var(--color-ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.pantry-recipe-coverage {
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-terracotta-deep);
+  background: var(--color-terracotta-tint);
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+
+.pantry-recipe-coverage-full {
+  color: var(--color-olive-deep);
+  background: var(--color-olive-tint);
+}
+
+.pantry-recipe-body {
+  padding: var(--space-4);
+  border-top: 1px solid var(--color-line);
+}
+
+.pantry-recipe-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.pantry-recipe-col-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-ink-soft);
+  margin: 0 0 var(--space-2);
+}
+
+.pantry-recipe-ing-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pantry-recipe-ing-list li {
+  text-transform: capitalize;
+}
+
+.pantry-recipe-have li::before {
+  content: '✓ ';
+  color: var(--color-olive-deep);
+  font-weight: 700;
+}
+
+.pantry-recipe-missing li::before {
+  content: '+ ';
+  color: var(--color-terracotta-deep);
+  font-weight: 700;
+}
+
+.pantry-recipe-instructions {
+  list-style: decimal;
+  padding-left: var(--space-5);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-ink);
+}
+
+.pantry-recipes-note {
+  margin: var(--space-4) 0 0;
+  font-size: 11px;
+  color: var(--color-ink-soft);
+  font-style: italic;
+}
+
+.plato-sugerido {
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-card);
+  margin-bottom: var(--space-6);
+}
+
+.plato-sugerido-input {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.plato-sugerido-input label {
+  font-size: 14px;
+  color: var(--color-ink-soft);
+}
+
+.target-kcal-input {
+  width: 120px;
+}
+
+.plato-sugerido-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-3);
+}
+
+.plato-sugerido-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--color-cream-dim);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+}
+
+.plato-categoria {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.plato-raciones {
+  font-size: 13px;
+  color: var(--color-terracotta-deep);
+  font-weight: 700;
+}
+
+.plato-jump {
+  align-self: flex-start;
+  border: none;
+  background: none;
+  color: var(--color-olive-deep);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+}
+
+.plato-sugerido-note {
+  margin: var(--space-3) 0 0;
+  font-size: 12px;
+  color: var(--color-ink-soft);
+  font-style: italic;
+}
+
+.equivalencias-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.equivalencias-groups {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  min-width: 0;
+}
+
+.equivalencias-group {
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-card);
+}
+
+.equivalencias-group-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.equivalencias-group-header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.equivalencias-group-title {
+  font-size: 18px;
+  margin: 0;
+  color: var(--color-olive-deep);
+}
+
+.equivalencias-macros {
+  display: flex;
+  gap: var(--space-3);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-terracotta-deep);
+  white-space: nowrap;
+}
+
+.group-only-button {
+  border: none;
+  background: none;
+  color: var(--color-ink-soft);
+  font-size: 11px;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  white-space: nowrap;
+}
+
+.equivalencias-nota {
+  font-size: 13px;
+  color: var(--color-ink-soft);
+  font-style: italic;
+  margin: 0 0 var(--space-4);
+}
+
+.equivalencias-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-2) var(--space-4);
+}
+
+.equivalencias-item-wrap {
+  border-bottom: 1px dashed var(--color-line);
+  padding-bottom: var(--space-2);
+}
+
+.equivalencias-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) 0 0;
+  font-size: 14px;
+}
+
+.equivalent-button {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 1px solid var(--color-line);
+  background: var(--color-cream-dim);
+  color: var(--color-ink-soft);
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.equivalent-button-active {
+  background: var(--color-terracotta);
+  border-color: var(--color-terracotta);
+  color: var(--color-cream);
+}
+
+.equivalent-panel {
+  margin-top: var(--space-2);
+  background: var(--color-terracotta-tint);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+}
+
+.equivalent-panel-label {
+  font-size: 12px;
+  color: var(--color-terracotta-deep);
+  margin: 0 0 var(--space-2);
+  line-height: 1.4;
+}
+
+.equivalent-panel-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 160px;
+  overflow-y: auto;
+}
+
+.equivalent-panel-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: 12px;
+}
+
+.equivalent-panel-name {
+  text-transform: capitalize;
+  color: var(--color-ink);
+}
+
+.equivalent-panel-racion {
+  color: var(--color-ink-soft);
+  white-space: nowrap;
+}
+
+.equivalencias-item-name {
+  flex: 1;
+  color: var(--color-ink);
+  min-width: 0;
+}
+
+.equivalencias-item-racion {
+  color: var(--color-ink-soft);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  font-size: 12px;
+}
+
+.equivalencias-item-cart {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.equivalencias-item-cart button {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 1px solid var(--color-line);
+  background: var(--color-cream-dim);
+  color: var(--color-ink);
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.equivalencias-item-cart .add-button {
+  background: var(--color-olive);
+  border-color: var(--color-olive);
+  color: var(--color-cream);
+}
+
+.equivalencias-item-qty {
+  font-size: 12px;
+  font-weight: 700;
+  min-width: 18px;
+  text-align: center;
+}
+
+.pantry-checkbox {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--color-line);
+  background: var(--color-cream-dim);
+  color: var(--color-cream);
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pantry-checkbox-checked {
+  background: var(--color-olive);
+  border-color: var(--color-olive);
+}
+
+.equivalencias-empty {
+  color: var(--color-ink-soft);
+  font-size: 15px;
+}
+
+.mi-platillo {
+  position: sticky;
+  top: var(--space-5);
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-raised);
+}
+
+.mi-platillo-empty {
+  font-size: 13px;
+  color: var(--color-ink-soft);
+  line-height: 1.5;
+}
+
+.mi-platillo-list {
+  list-style: none;
+  margin: 0 0 var(--space-4);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.mi-platillo-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  border-bottom: 1px dashed var(--color-line);
+  padding-bottom: var(--space-2);
+}
+
+.mi-platillo-line-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.mi-platillo-name {
+  font-size: 13px;
+  color: var(--color-ink);
+  text-transform: capitalize;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mi-platillo-raciones {
+  font-size: 11px;
+  color: var(--color-ink-soft);
+}
+
+.mi-platillo-line-actions {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.mi-platillo-line-actions button {
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  border: 1px solid var(--color-line);
+  background: var(--color-cream-dim);
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.mi-platillo-totals {
+  border-top: 1px solid var(--color-line);
+  padding-top: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mi-platillo-total-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--color-ink-soft);
+}
+
+.mi-platillo-total-kcal {
+  color: var(--color-ink);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.equivalencias-source {
+  margin-top: var(--space-7);
+  font-size: 12px;
+  color: var(--color-ink-soft);
+  line-height: 1.5;
+}
+
+.equivalencias-source-top {
+  margin: 0 0 var(--space-5);
+  padding-left: var(--space-3);
+  border-left: 2px solid var(--color-olive);
+  max-width: 65ch;
+}
+
+@media (max-width: 900px) {
+  .equivalencias-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .mi-platillo {
+    position: static;
+  }
+}

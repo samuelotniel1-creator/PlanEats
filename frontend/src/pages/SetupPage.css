@@ -1,0 +1,124 @@
+.profile-banner {
+  background: var(--color-olive-tint);
+  color: var(--color-olive-deep);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3) var(--space-4);
+  font-size: 14px;
+  margin: 0 0 var(--space-5);
+}
+
+.setup-form {
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-card);
+}
+
+.setup-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6) var(--space-5);
+}
+
+.field {
+  border: none;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+.field-wide {
+  grid-column: 1 / -1;
+}
+
+.field legend {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-ink);
+  padding: 0 0 var(--space-3);
+}
+
+.pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.pill {
+  border: 1px solid var(--color-line);
+  background: var(--color-cream-dim);
+  color: var(--color-ink-soft);
+  border-radius: 999px;
+  padding: var(--space-2) var(--space-4);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.pill:hover {
+  border-color: var(--color-olive);
+}
+
+.pill-active {
+  background: var(--color-olive);
+  border-color: var(--color-olive);
+  color: var(--color-cream);
+}
+
+.text-input {
+  width: 100%;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3) var(--space-4);
+  font-size: 15px;
+  font-family: var(--font-body);
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+.text-input:focus {
+  outline: 2px solid var(--color-olive);
+  outline-offset: 1px;
+}
+
+.form-error {
+  margin: var(--space-5) 0 0;
+  color: var(--color-danger);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.submit-button {
+  margin-top: var(--space-6);
+  width: 100%;
+  padding: var(--space-4) var(--space-5);
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--color-terracotta);
+  color: var(--color-cream);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.submit-button:hover:not(:disabled) {
+  background: var(--color-terracotta-deep);
+}
+
+.submit-button:active:not(:disabled) {
+  transform: scale(0.99);
+}
+
+.submit-button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+@media (max-width: 640px) {
+  .setup-grid {
+    grid-template-columns: 1fr;
+  }
+}
