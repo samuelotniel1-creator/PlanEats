@@ -350,7 +350,7 @@ export default function EquivalenciasPage() {
               pantryMode={pantryMode}
               onAdd={addToCart}
               onTogglePantry={togglePantry}
-              onFilterGroup={() => setGroupFilter(group.id)}
+              onFilterGroup={() => setGroupFilter([group.id])}
             />
           ))}
           {filteredGroups.length === 0 && (

@@ -5,3 +5,6 @@ dist/
 *.log
 .DS_Store
 .impeccable/
+frontend/tsconfig.tsbuildinfo
+.claude/
+.codex/
