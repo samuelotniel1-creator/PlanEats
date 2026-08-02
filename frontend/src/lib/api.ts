@@ -23,3 +23,20 @@ export function getMealPlan(id: string): Promise<MealPlanRecord> {
 export function getRecipeCatalog(): Promise<Recipe[]> {
   return request('/recipes');
 }
+
+export interface RewrittenRecipe {
+  name: string;
+  ingredients: { name: string; quantity: number; unit: string }[];
+  instructions: string[];
+  notes: string[];
+}
+
+export function rewriteRecipe(params: {
+  recipe: Recipe;
+  originalIngredient: string;
+  substituteIngredient: string;
+  equivalentGroup: string;
+  quantity: number;
+}): Promise<RewrittenRecipe> {
+  return request('/recipes/rewrite', { method: 'POST', body: JSON.stringify(params) });
+}

@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { recipes } from '../data/seed.js';
 import { estimateNutrition, breakdownNutrition } from '../lib/nutrition.js';
+import { rewriteRecipeWithGemini } from '../lib/gemini.js';
 
 const router = Router();
 
@@ -21,6 +22,42 @@ router.get('/', (_req, res) => {
     };
   });
   res.json(catalog);
+});
+
+/**
+ * Reescribe una receta con IA (Gemini) cuando el usuario sustituye un
+ * ingrediente por un equivalente SMAE desde RecipePage. La cantidad de la
+ * sustitución "vive" en el frontend (ver `substitutions` en RecipePage.tsx);
+ * aquí solo se le pide a la IA que redacte la receta resultante.
+ */
+router.post('/rewrite', async (req, res) => {
+  const { recipe, originalIngredient, substituteIngredient, equivalentGroup, quantity } = req.body ?? {};
+
+  if (
+    !recipe ||
+    typeof recipe.name !== 'string' ||
+    !Array.isArray(recipe.ingredients) ||
+    !Array.isArray(recipe.instructions) ||
+    typeof originalIngredient !== 'string' ||
+    typeof substituteIngredient !== 'string' ||
+    typeof equivalentGroup !== 'string'
+  ) {
+    return res.status(400).json({ error: 'Faltan campos requeridos o tienen un formato inválido' });
+  }
+
+  try {
+    const rewritten = await rewriteRecipeWithGemini({
+      recipe,
+      originalIngredient,
+      substituteIngredient,
+      equivalentGroup,
+      quantity: typeof quantity === 'number' ? quantity : 1,
+    });
+    res.json(rewritten);
+  } catch (err) {
+    console.error('rewriteRecipeWithGemini failed:', err.message);
+    res.status(502).json({ error: 'No se pudo generar la receta con IA en este momento. Intenta de nuevo.' });
+  }
 });
 
 export default router;

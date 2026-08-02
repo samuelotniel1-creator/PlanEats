@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { getMealPlan } from '../lib/api';
+import { getMealPlan, rewriteRecipe } from '../lib/api';
 import { equivalencias } from '../data/equivalencias';
 import { mapGrupoLabelToIds } from '../lib/groupMapping';
 import type { MealPlanRecord, Recipe } from '../types';
@@ -24,6 +24,11 @@ export default function RecipePage() {
   const [showEquivalencias, setShowEquivalencias] = useState(false);
   const [openFor, setOpenFor] = useState<string | null>(null);
   const [substitutions, setSubstitutions] = useState<Record<string, Substitution>>({});
+  const [aiName, setAiName] = useState<string | null>(null);
+  const [aiInstructions, setAiInstructions] = useState<string[] | null>(null);
+  const [aiNotes, setAiNotes] = useState<string[] | null>(null);
+  const [rewriting, setRewriting] = useState(false);
+  const [rewriteError, setRewriteError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!planId) return;
@@ -78,10 +83,11 @@ export default function RecipePage() {
 
   const totalMinutes = recipe.prepMinutes + recipe.cookMinutes;
 
-  function pickSubstitute(ingredientId: string, groupId: string, alimento: { nombre: string; racion: string }) {
+  async function pickSubstitute(ingredientId: string, groupId: string, alimento: { nombre: string; racion: string }) {
     const group = equivalencias.find((g) => g.id === groupId);
     const original = recipe!.equivalencias.find((e) => e.ingredientId === ingredientId);
-    if (!group || !original) return;
+    const originalIngredient = recipe!.ingredients.find((i) => i.ingredientId === ingredientId);
+    if (!group || !original || !originalIngredient) return;
     const originalGroupIds = mapGrupoLabelToIds(original.grupo);
     const originalGroup = equivalencias.find((g) => originalGroupIds.includes(g.id));
     const originalGroupKcal = originalGroup?.kcal || 1;
@@ -100,12 +106,42 @@ export default function RecipePage() {
       },
     }));
     setOpenFor(null);
+
+    // La sustitución nutrimental ya está aplicada arriba (totales correctos
+    // aunque la IA falle); esta llamada solo intenta redactar de nuevo la
+    // receta (ingredientes + pasos) para que quede coherente con el cambio.
+    setRewriting(true);
+    setRewriteError(null);
+    try {
+      const rewritten = await rewriteRecipe({
+        recipe: recipe!,
+        originalIngredient: originalIngredient.name,
+        substituteIngredient: alimento.nombre,
+        equivalentGroup: original.grupo,
+        quantity: raciones,
+      });
+      setAiName(rewritten.name);
+      setAiInstructions(rewritten.instructions);
+      setAiNotes(rewritten.notes);
+    } catch (err) {
+      setRewriteError(
+        err instanceof Error ? err.message : 'No se pudo redactar la receta con IA en este momento.'
+      );
+    } finally {
+      setRewriting(false);
+    }
   }
 
   function clearSubstitute(ingredientId: string) {
     setSubstitutions((prev) => {
       const next = { ...prev };
       delete next[ingredientId];
+      if (Object.keys(next).length === 0) {
+        setAiName(null);
+        setAiInstructions(null);
+        setAiNotes(null);
+        setRewriteError(null);
+      }
       return next;
     });
   }
@@ -118,7 +154,7 @@ export default function RecipePage() {
 
       <div className="recipe-hero">
         <p className="page-eyebrow">{mealTypeLabel(recipe.mealType)}</p>
-        <h1 className="recipe-title font-display">{recipe.name}</h1>
+        <h1 className="recipe-title font-display">{aiName ?? recipe.name}</h1>
         <div className="recipe-meta">
           <span>{recipe.prepMinutes} min preparación</span>
           <span className="meta-sep">·</span>
@@ -264,14 +300,38 @@ export default function RecipePage() {
 
         <section className="instructions-panel">
           <h2 className="panel-title">Preparación</h2>
+
+          {rewriting && (
+            <p className="ai-rewrite-status">Ajustando la receta con IA para el nuevo ingrediente…</p>
+          )}
+          {rewriteError && !rewriting && (
+            <p className="ai-rewrite-status ai-rewrite-error">
+              {rewriteError} Se muestran los pasos originales; la cantidad y el ingrediente ya
+              quedaron sustituidos arriba.
+            </p>
+          )}
+          {aiInstructions && !rewriting && (
+            <p className="ai-rewrite-status ai-rewrite-ok">
+              ✨ Pasos ajustados por IA para el ingrediente sustituido.
+            </p>
+          )}
+
           <ol className="instructions-list">
-            {recipe.instructions.map((step, i) => (
+            {(aiInstructions ?? recipe.instructions).map((step, i) => (
               <li key={i}>
                 <span className="step-number">{i + 1}</span>
                 <span className="step-text">{step}</span>
               </li>
             ))}
           </ol>
+
+          {aiNotes && aiNotes.length > 0 && (
+            <ul className="ai-rewrite-notes">
+              {aiNotes.map((note, i) => (
+                <li key={i}>{note}</li>
+              ))}
+            </ul>
+          )}
         </section>
       </div>
     </div>

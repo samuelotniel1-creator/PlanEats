@@ -227,6 +227,36 @@
   text-decoration: underline;
 }
 
+.ai-rewrite-status {
+  margin: 0 0 var(--space-4);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  line-height: 1.5;
+  background: var(--color-cream-dim);
+  color: var(--color-ink-soft);
+}
+
+.ai-rewrite-ok {
+  background: var(--color-olive-tint);
+  color: var(--color-olive-deep);
+}
+
+.ai-rewrite-error {
+  background: var(--color-terracotta-tint);
+  color: var(--color-terracotta-deep);
+}
+
+.ai-rewrite-notes {
+  margin: var(--space-4) 0 0;
+  padding-left: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-size: 13px;
+  color: var(--color-ink-soft);
+}
+
 .instructions-list {
   list-style: none;
   margin: 0;
